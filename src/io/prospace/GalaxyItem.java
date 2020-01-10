@@ -8,6 +8,7 @@ import java.util.List;
 import static io.prospace.GalaxyNumber.*;
 
 public class GalaxyItem {
+    // store each item name and values
     public static HashMap<String, Double> metalValues = new HashMap<>();
 
     public static void galaxyItemInit(List<String> inputStrings) {

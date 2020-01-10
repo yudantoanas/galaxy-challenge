@@ -3,15 +3,24 @@ package io.prospace;
 import java.util.Arrays;
 import java.util.List;
 
-import static io.prospace.GalaxyItem.*;
-import static io.prospace.GalaxyNumber.*;
+import static io.prospace.GalaxyItem.galaxyItemInit;
+import static io.prospace.GalaxyItem.metalValues;
+import static io.prospace.GalaxyNumber.calculateQuantities;
+import static io.prospace.GalaxyNumber.galaxyNumberInit;
 
 public class GalaxyMerchant {
     public GalaxyMerchant() {
+        // create object to define the default roman numerals value
         new RomanNumber();
     }
 
+    private static String getGalaxyNumberOnly(String inputString) {
+        // returns only the numbers from the given sentence
+        return inputString.substring(inputString.indexOf("is") + 3, inputString.indexOf("?")).trim();
+    }
+
     void translateInput(List<String> input) {
+        // checking each line
         input.forEach(this::checkStringPattern);
     }
 
@@ -47,25 +56,29 @@ public class GalaxyMerchant {
             // get the last word as the Item name
             String metalName = creditsValue.substring(creditsValue.lastIndexOf(" ") + 1);
 
-            // split the string into arrays in order to calculate the total quantity
-            List<String> metalQuantities = Arrays.asList(creditsValue.split(" " + metalName));
+            // split the string from the item name using substring
+            String metalQuantities = creditsValue.substring(0, creditsValue.lastIndexOf(metalName)).trim();
 
-            double totalQuantity = Double.parseDouble(String.valueOf(calculateQuantities(Arrays.asList(metalQuantities.get(0).split(" ")))));
+            // again split the above string into string array in order to calculate the total quantity
+            double totalQuantity = Double.parseDouble(String.valueOf(calculateQuantities(Arrays.asList(metalQuantities.split(" ")))));
+
+            // get item values by passing item name as key
             double metalValue = metalValues.get(metalName);
 
             if (Double.POSITIVE_INFINITY == metalValue || Double.NEGATIVE_INFINITY == metalValue) {
+                // if item value is match infinite (+/-) then it will print error message
+                // usually this will happen if the total quantity is divided by zero
                 System.out.println("Sorry, cannot calculate the credits");
             } else {
+                // otherwise, it will calculate normally
                 int totalCreditsValue = (int) (totalQuantity * metalValue);
 
-                System.out.println(metalQuantities.get(0) + " " + metalName + " is " + totalCreditsValue + " Credits");
+                // and prints out the credits sentence
+                System.out.println(metalQuantities + " " + metalName + " is " + totalCreditsValue + " Credits");
             }
         } else {
+            // if input is not match any of the above criteria.
             System.out.println("I have no idea what you are talking about");
         }
-    }
-
-    private static String getGalaxyNumberOnly(String inputString) {
-        return inputString.substring(inputString.indexOf("is") + 3, inputString.indexOf("?")).trim();
     }
 }
