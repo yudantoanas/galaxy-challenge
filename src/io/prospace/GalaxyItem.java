@@ -2,31 +2,26 @@ package io.prospace;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static io.prospace.GalaxyNumber.*;
 
 public class GalaxyItem {
-    String itemName;
-    int itemValue;
+    public static HashMap<String, Double> metalValues = new HashMap<>();
 
-    public GalaxyItem(String itemName, int itemValue) {
-        this.itemName = itemName;
-        this.itemValue = itemValue;
-    }
+    public static void galaxyItemInit(List<String> inputStrings) {
+        String metal = inputStrings.get(0);
+        String metalName = metal.substring(metal.lastIndexOf(" ") + 1);
 
-    public static List<GalaxyItem> itemTransaction(List<String> iteminput, List<GalaxyNumberConvention> galaxyNumberConventions) {
-        List<String> inputs = new ArrayList<>();
-        for (String input: iteminput) {
-            inputs.add(String.valueOf(input.toLowerCase().endsWith("credits")));
-        }
+        List<String> metalQuantities = Arrays.asList(metal.split(" " + metalName));
+        int totalQuantity = calculateQuantities(Arrays.asList(metalQuantities.get(0).split(" ")));
 
-        List<GalaxyItem> galaxyItems = new ArrayList<>();
-        for (String input : inputs) {
-            List<GalaxyNumberConvention> numberConventions = GalaxyNumberConvention
-                    .createGalaxyItemValue(Arrays.asList(input.split(" ")), galaxyNumberConventions);
-            System.out.println(numberConventions);
-        }
+        String value = inputStrings.get(1).substring(0, inputStrings.get(1).indexOf(" "));
 
-        return null;
+        int totalValue = Integer.parseInt(value);
+        double metalValue = (Double.parseDouble(String.valueOf(totalValue)) / Double.parseDouble(String.valueOf(totalQuantity)));
+
+        GalaxyItem.metalValues.put(metalName, metalValue);
     }
 }
