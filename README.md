@@ -1,8 +1,6 @@
 # galaxy-challenge
 This repository is meant to test my skill to solve at "Galaxy Merchant Trading Guide" challenge. I used Java as primary language.
 
-*ps: by the time I am writing this readme, I still haven't fully solve the challenge. Although I know that there are many developers that have already shared their answer/solution about this problem, but I am trying my best to not copycat their solutions even though I won't finish it in time. I know it's too naive for me to do this by myself and not relying on anybody. However, I still want to do this for the sake of my skills, integrity, and my capabilities as a professional programmer/developer. I still hope that my process will worth it in the future.
-
 # problem description
 You decided to give up on earth after the latest financial collapse left 99.99% of the earth's
 population with 0.01% of the wealth. Luckily, with the scant sum of money that is left in your
@@ -57,13 +55,23 @@ glob prok Iron is 782 Credits
 I have no idea what you are talking about
 
 # system design solution
-
+The flowchart as part of the system design can be seen with this link
+https://drive.google.com/open?id=1tJLaw87oA3Jn1XxHw1mAW2wn7aUbKem2
 
 # my assumptions
 - the inputs are from the file .txt that is placed inside the project that contains test input.
-- the input string are also defined by 4 different scenario that are placed in order. First, define the galaxy number and associate it with roman number. Then, define the credits by calculating item value with its quanity. Next, a "how much is" type of question, and lastly a "how many credits" question. 
-If the input string is not matched in any of the scenario above, then the program will print out an error message.
+- the input string are also defined by 4 different types that are placed in order. First, define the galaxy number and associate it with roman number. Then, define the credits by calculating item value with its quanity. Next, a "how much is" type of question, and lastly a "how many credits" question. 
+If the input string is not matched in any of the input types above, then the program will print out an error message.
 - the inputs are galaxy number that are ranging from roman numeral I to L (based on the example input)
 - since roman numerals cannot be negative, so I will assume that the input will also be positive number.
 
 # instruction on how to run the program
+Since the program is created using IntelliJ IDE, there are 2 types of running the program.
+with IntelliJ : 
+1. Clone the repository
+2. just run the program by clicking "run" button in the toolbar
+with Command Prompt (cmd)/Terminal :
+1. Clone the repository
+2. Open the ProspaceChallenge_jar folder inside "/out/artifacts/" directory
+3. Copy the input.txt file from the root folder to the ProspaceChallenge_jar folder.
+4. Open cmd in that folder and run "java -jar ProspaceChallenge.jar"
