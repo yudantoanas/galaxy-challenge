@@ -56,12 +56,14 @@ glob prok Gold is 57800 Credits
 glob prok Iron is 782 Credits
 I have no idea what you are talking about
 
-# my pseudocode/algorithm for solving the conversion of galactic numbers to arabic numbers is
-0. create global constant key-value list of roman numerals. (ex: I->1, V->5, etc)
-1. if input mathes pattern "x is z" then save x with value z which is has a value of v (from the constant list of roman numerals)
-2. if input matches pattern "a...z Metals is v Credits" then save the Metal name and calculate its value based on totalCredits divided by totalUnitValue (a + ... + z).
-3. create a string pattern that matches "how much is ... ?" and "how many Credits is ... ?" input as question.
-4. create an error handling for the questions.
+# system design solution
 
-# assumptions
+
+# my assumptions
 - the inputs are from the file .txt that is placed inside the project that contains test input.
+- the input string are also defined by 4 different scenario that are placed in order. First, define the galaxy number and associate it with roman number. Then, define the credits by calculating item value with its quanity. Next, a "how much is" type of question, and lastly a "how many credits" question. 
+If the input string is not matched in any of the scenario above, then the program will print out an error message.
+- the inputs are galaxy number that are ranging from roman numeral I to L (based on the example input)
+- since roman numerals cannot be negative, so I will assume that the input will also be positive number.
+
+# instruction on how to run the program

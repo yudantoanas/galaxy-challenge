@@ -11,7 +11,9 @@ public class Main {
         // read input from file .txt
         BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
 
+        GalaxyMerchant galaxyMerchant = new GalaxyMerchant();
+
         // translate the above input
-        new GalaxyMerchant().translateInput(reader.lines().collect(Collectors.toList()));
+        galaxyMerchant.translateInput(reader.lines().collect(Collectors.toList()));
     }
 }

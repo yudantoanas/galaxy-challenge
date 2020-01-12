@@ -4,13 +4,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static io.prospace.RomanNumber.*;
-
 public class GalaxyNumber {
-    // store each galaxy numerals and its associate roman number
-    public static HashMap<String, String> galaxyNumerals = new HashMap<>();
+    private RomanNumber romanNumber;
 
-    public static void galaxyNumberInit(List<String> inputStrings) {
+    // store each galaxy numerals and its associate roman number
+    private HashMap<String, String> galaxyNumerals;
+
+    public GalaxyNumber(RomanNumber romanNumber) {
+        this.romanNumber = romanNumber;
+        galaxyNumerals = new HashMap<>();
+    }
+
+    void saveGalaxyNumber(List<String> inputStrings) {
         // get number name
         String number = inputStrings.get(0);
 
@@ -21,31 +26,31 @@ public class GalaxyNumber {
         galaxyNumerals.put(number, symbol);
     }
 
-    public static String getRomanSymbol(String key) {
+    String getRomanSymbol(String key) {
         // get roman symbol by passing its key
         return galaxyNumerals.get(key);
     }
 
-    public static int calculateQuantities(List<String> quantities) {
+    public int calculateQuantities(List<String> input) {
         int total = 0;
 
-        // convert the galaxy numerals to roman numerals
-        String roman = convertInputToRomanNumeral(quantities);
+        // convert the galaxy numerals input to roman numerals
+        String roman = convertInputToRomanNumeral(input);
 
         // split the above string into array
         List<String> romanSplit = Arrays.asList(roman.split(""));
 
-        if (checkNumberFormat(roman)) {
+        if (romanNumber.checkNumberFormat(roman)) {
             // check if roman number is in correct format
             // and iterate every symbol
             for (int i = 0; i < romanSplit.size(); i++) {
                 // points the first symbol
-                int first = getNumberValue(romanSplit.get(i));
+                int first = romanNumber.getNumberValue(romanSplit.get(i));
 
                 if ((i + 1) < romanSplit.size()) {
                     // if next number is not null
                     // points the next number symbol
-                    int second = getNumberValue(romanSplit.get(i + 1));
+                    int second = romanNumber.getNumberValue(romanSplit.get(i + 1));
 
                     if (first >= second) {
                         // if the first number is higher than or equal to second
@@ -71,5 +76,16 @@ public class GalaxyNumber {
         }
 
         return total;
+    }
+
+    String convertInputToRomanNumeral(List<String> metalQuantities) {
+        StringBuilder result = new StringBuilder();
+
+        for (String metalQuantity : metalQuantities) {
+            // get roman number symbol and append it to result string
+            result.append(getRomanSymbol(metalQuantity));
+        }
+
+        return String.valueOf(result);
     }
 }
