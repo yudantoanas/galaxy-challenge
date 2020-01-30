@@ -17,10 +17,10 @@ public class GalaxyNumber {
 
     void saveGalaxyNumber(List<String> inputStrings) {
         // get number name
-        String number = inputStrings.get(0);
+        String number = inputStrings.get(0).trim();
 
         // get roman symbol and value
-        String symbol = inputStrings.get(2);
+        String symbol = inputStrings.get(2).trim();
 
         // save them to galaxy number HashMap
         galaxyNumerals.put(number, symbol);
@@ -28,7 +28,7 @@ public class GalaxyNumber {
 
     String getRomanSymbol(String key) {
         // get roman symbol by passing its key
-        return galaxyNumerals.get(key);
+        return galaxyNumerals.get(key.trim());
     }
 
     public int calculateQuantities(List<String> input) {

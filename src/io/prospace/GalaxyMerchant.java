@@ -1,7 +1,7 @@
 package io.prospace;
 
 import java.util.Arrays;
-import java.util.List;;
+import java.util.List;
 
 public class GalaxyMerchant {
     private GalaxyNumber galaxyNumber;
@@ -16,7 +16,7 @@ public class GalaxyMerchant {
 
     void translateInput(List<String> input) {
         // checking each line
-        input.forEach(this::checkStringPattern);
+        input.forEach(inputString -> checkStringPattern(inputString.trim()));
     }
 
     private void checkStringPattern(String inputString) {
